@@ -14,7 +14,6 @@ public class User {
     private String email;
     @DBRef(lazy = true)
     private List<Todo> todos;
-    private int numTodos;
 
     public User(String name, String email) {
         this.name = name;
@@ -54,15 +53,6 @@ public class User {
 
     public void setTodos(List<Todo> todos) {
         this.todos = todos;
-        numTodos = todos.size();
-    }
-
-    public int getNumTodos() {
-        return numTodos;
-    }
-
-    public void setNumTodos(int numTodos) {
-        this.numTodos = numTodos;
     }
 
     @Override
