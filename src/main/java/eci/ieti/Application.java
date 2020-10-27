@@ -97,27 +97,27 @@ public class Application implements CommandLineRunner {
         User user10 = userRepository.save(new User("Daniel Gomez","daniel@mail.com"));
         Long number = new Long(999999999);
         Long timeMillis = System.currentTimeMillis();
-        Todo todo1 = todoRepository.save(new Todo("Descripcion 1", 3, new Date(timeMillis - number * 1), user1, "Ready"));
+        Todo todo1 = todoRepository.save(new Todo("Descripcion 1 Mayor a 30 caracteres", 3, new Date(timeMillis - number * 1), user1, "Ready"));
         Todo todo2 = todoRepository.save(new Todo("Descripcion 2", 4, new Date(timeMillis + number * 2), user2, "In Progress"));
-        Todo todo3 = todoRepository.save(new Todo("Descripcion 3", 5, new Date(timeMillis - number * 3), user1, "Done"));
+        Todo todo3 = todoRepository.save(new Todo("Descripcion 3 Mayor a 30 caracteres", 5, new Date(timeMillis - number * 3), user1, "Done"));
         Todo todo4 = todoRepository.save(new Todo("Descripcion 4", 6, new Date(timeMillis - number * 4), user4, "Done"));
-        Todo todo5 = todoRepository.save(new Todo("Descripcion 5", 7, new Date(timeMillis - number * 1), user1, "Done"));
+        Todo todo5 = todoRepository.save(new Todo("Descripcion 5 Mayor a 30 caracteres", 7, new Date(timeMillis - number * 1), user1, "Done"));
         Todo todo6 = todoRepository.save(new Todo("Descripcion 6", 1, new Date(timeMillis - number * 2), user6, "Ready"));
-        Todo todo7 = todoRepository.save(new Todo("Descripcion 7", 2, new Date(timeMillis + number * 1), user7, "In Progress"));
+        Todo todo7 = todoRepository.save(new Todo("Descripcion 7 Mayor a 30 caracteres", 2, new Date(timeMillis + number * 1), user7, "In Progress"));
         Todo todo8 = todoRepository.save(new Todo("Descripcion 8", 3, new Date(timeMillis + number * 2), user8, "Ready"));
         Todo todo9 = todoRepository.save(new Todo("Descripcion 9", 10, new Date(timeMillis - number * 5), user1, "Ready"));
-        Todo todo10 = todoRepository.save(new Todo("Descripcion 10", 4, new Date(timeMillis - number * 3), user10, "Done"));
+        Todo todo10 = todoRepository.save(new Todo("Descripcion 10 Mayor a 30 caracteres", 4, new Date(timeMillis - number * 3), user10, "Done"));
 
         Todo todo11 = todoRepository.save(new Todo("Descripcion 1", 6, new Date(timeMillis + number * 1), user5, "Ready"));
-        Todo todo12 = todoRepository.save(new Todo("Descripcion 2", 1, new Date(timeMillis - number * 2), user2, "In Progress"));
+        Todo todo12 = todoRepository.save(new Todo("Descripcion 2 Mayor a 30 caracteres", 1, new Date(timeMillis - number * 2), user2, "In Progress"));
         Todo todo13 = todoRepository.save(new Todo("Descripcion 3", 8, new Date(timeMillis + number * 3), user9, "Done"));
-        Todo todo14 = todoRepository.save(new Todo("Descripcion 4", 3, new Date(timeMillis - number * 4), user4, "Done"));
+        Todo todo14 = todoRepository.save(new Todo("Descripcion 4 Mayor a 30 caracteres", 3, new Date(timeMillis - number * 4), user4, "Done"));
         Todo todo15 = todoRepository.save(new Todo("Descripcion 5", 4, new Date(timeMillis + number * 1), user3, "Done"));
         Todo todo16 = todoRepository.save(new Todo("Descripcion 6", 4, new Date(timeMillis + number * 2), user6, "Ready"));
-        Todo todo17 = todoRepository.save(new Todo("Descripcion 7", 1, new Date(timeMillis - number * 1), user2, "In Progress"));
+        Todo todo17 = todoRepository.save(new Todo("Descripcion 7 Mayor a 30 caracteres", 1, new Date(timeMillis - number * 1), user2, "In Progress"));
         Todo todo18 = todoRepository.save(new Todo("Descripcion 8", 3, new Date(timeMillis - number * 2), user3, "Ready"));
         Todo todo19 = todoRepository.save(new Todo("Descripcion 9", 5, new Date(timeMillis + number * 5), user6, "Ready"));
-        Todo todo20 = todoRepository.save(new Todo("Descripcion 10", 1, new Date(timeMillis + number * 3), user9, "Done"));
+        Todo todo20 = todoRepository.save(new Todo("Descripcion 10 Mayor a 30 caracteres", 1, new Date(timeMillis + number * 3), user9, "Done"));
 
         System.out.println("TERMINO !!!");
         System.out.println("TERMINO !!!");
@@ -148,6 +148,7 @@ public class Application implements CommandLineRunner {
         query.addCriteria(Criteria.where("dueDate").lt(new Date()));
 
         List<Todo> todosExpired = mongoOperation.find(query, Todo.class);
+        System.out.println("--------------------- JQUERY 1 ---------------------");
         System.out.println("\nTodos Totales 20");
         System.out.println("Todos donde la fecha ha expirado: " + todosExpired.size());
         for (Todo todo: todosExpired) {
@@ -158,7 +159,7 @@ public class Application implements CommandLineRunner {
         query.addCriteria(Criteria.where("priority").gte(5).andOperator(Criteria.where("responsible").is(user1)));
         List<Todo> priorityGT = mongoOperation.find(query, Todo.class);
 
-
+        System.out.println("\n--------------------- JQUERY 2 ---------------------");
         System.out.println("\nTodos Totales 20");
         System.out.println("Todos los que estan asignados a un usuario dado y tienen una prioridad mayor igual que 5: " + priorityGT.size());
         for (Todo todo: priorityGT) {
@@ -170,10 +171,22 @@ public class Application implements CommandLineRunner {
         BasicQuery query1 = new BasicQuery("{$nor: [{todos: {$exists: false}}, {todos: {$size: 0}}, {todos: {$size: 1}}, {todos: {$size: 2}}]}");
         List<User> userList = mongoOperation.find(query1, User.class);
 
+        System.out.println("\n--------------------- JQUERY 3 ---------------------");
         System.out.println("\nUsuarios Totales 10");
         System.out.println("Usuarios que han asignado más de 2 Todos: " + userList.size());
         for (User user: userList) {
             System.out.println(user.toString());
+        }
+
+        query = new Query();
+        query.addCriteria(Criteria.where("description").regex("[a-z, A-Z, 0-9, ' ']{30,}"));
+        List<Todo>  descriptionGreater = mongoOperation.find(query, Todo.class);
+
+        System.out.println("\n--------------------- JQUERY 4 ---------------------");
+        System.out.println("\nTodos Totales 20");
+        System.out.println("Todos que contienen una descripción con una longitud superior a 30 caracteres: " + descriptionGreater.size());
+        for (Todo todo: descriptionGreater) {
+            System.out.println(todo.toString());
         }
     }
 
