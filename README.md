@@ -27,7 +27,7 @@ El enunciado del laboratorio está disponible [aquí](https://github.com/ieti-ec
 - How many products are returned by the *findByDescriptionContaining* query? Why?
   - Two products, the method returns only two because there is a pagination and it returns 2 products.
 - Which are the collection names where the objects are stored? Where are those names assigned?
-  - Customer and Product, names are assigned by default unless we specify it with the @Document annotation (collection = "<name>")
+  - Customer and Product, names are assigned by default unless we specify it with the @Document annotation (collection = "name")
 
 ## Autor
 Johann Sebastian Páez Campos - Laboratorio 09 IETI 29/10/2020
