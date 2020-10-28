@@ -1,3 +1,24 @@
+# IETI-LAB9
+
+## Este proyecto fue construido con:
+
+- [Gradle](https://gradle.org/) Administrador de dependencias.
+
+- [Spring](https://spring.io/) Framework para desarrollar aplicaciones web.
+
+- [ReactJS](https://es.reactjs.org/) Framework para aplicaciones web.
+
+## Comandos Backend
+  Para compilar el proyecto: ```gradle build```
+  
+  Para ejecutar el proyecto: ```gradle bootRun```
+  
+## Enunciado
+El enunciado del laboratorio está disponible [aquí](https://github.com/ieti-eci/2.3-jpa-mongodb).
+
+## Autor
+Johann Sebastian Páez Campos - Laboratorio 09 IETI 29/10/2020
+
 # 2.3 JPA with MongoDB
 Create a Spring Boot Application that connects with MongoDB.
 
