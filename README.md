@@ -6,8 +6,6 @@
 
 - [Spring](https://spring.io/) Framework para desarrollar aplicaciones web.
 
-- [ReactJS](https://es.reactjs.org/) Framework para aplicaciones web.
-
 ## Comandos Backend
   Para compilar el proyecto: ```gradle build```
   
