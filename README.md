@@ -14,6 +14,21 @@
 ## Enunciado
 El enunciado del laboratorio está disponible [aquí](https://github.com/ieti-eci/2.3-jpa-mongodb).
 
+## Respuestas Preguntas Laboratorio
+
+- How many customers were created in the database?
+  - 5 customers were created.
+- Where is the *findAll* method implemented?
+  - This method is implemented by default in the Spring Repository, it is not explicit.
+- Suppose you have more than 1000 products in your database. How would you implement a method for supporting pagination and return pages of 50 products to your frontend?
+  - The method that should be implemented is productRepository.findBy (PageRequest.of (0, 50)).
+- How many products contain the "plus" word in their description?
+  - 4 products have the word plus in their description.
+- How many products are returned by the *findByDescriptionContaining* query? Why?
+  - Two products, the method returns only two because there is a pagination and it returns 2 products.
+- Which are the collection names where the objects are stored? Where are those names assigned?
+  - Customer and Product, names are assigned by default unless we specify it with the @Document annotation (collection = "<name>")
+
 ## Autor
 Johann Sebastian Páez Campos - Laboratorio 09 IETI 29/10/2020
 
